@@ -1,0 +1,27 @@
+{
+    "name": "MyFigLogGraph",
+    "description": "Figma 使用记录图",
+    "version": "2.0.0",
+    "manifest_version": 3,
+    "homepage_url": "https://moonvy.com",
+    "icons": {
+        "16": "img/Logo_16.png",
+        "48": "img/Logo_48.png",
+        "128": "img/Logo_128.png"
+    },
+    "content_scripts": [
+        {
+            "matches": ["https://www.figma.com/*", "https://figma.com/*"],
+            "js": ["content.js"],
+            "run_at": "document_start",
+            "all_frames": false
+        }
+    ],
+    "web_accessible_resources": [
+        {
+            "resources": ["app.js"],
+            "matches": ["https://www.figma.com/*", "https://figma.com/*"],
+            "extension_ids": []
+        }
+    ]
+}

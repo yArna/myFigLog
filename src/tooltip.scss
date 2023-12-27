@@ -1,0 +1,20 @@
+.v-popper--theme-tooltip .v-popper__inner {
+    background: rgb(13 8 47 / 83%);
+    color: #f9f9f9;
+    border-radius: 4px;
+    backdrop-filter: blur(10px);
+    font-size: 13px;
+    line-height: 1.6;
+ 
+}
+
+.v-popper--theme-tooltip .v-popper__inner .sub {
+    color: rgba(249, 249, 249, 0.52);
+}
+
+
+
+.v-popper--theme-tooltip .v-popper__arrow-outer {
+    border-color: rgb(13 8 47 / 83%);
+
+}

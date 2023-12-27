@@ -1,0 +1,41 @@
+{
+    "name": "MyFigLogGraph",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "dev": "rspack build --watch --mode=development",
+        "dev:html": "rspack dev --mode=development ",
+        "dev:website": "rspack dev --mode=development -c ./rspack.website.config.js",
+        "build": "rspack build --mode=production",
+        "build-up": "npm run build && npm run up:app",
+        "up:website": "node ./publish/publishWebsite.mjs",
+        "up:app": "node ./publish/publishApp.mjs"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "axios": "^0.21.1",
+        "dayjs": "^1.10.4",
+        "floating-vue": "1.0.0-beta.19",
+        "fzz": "*",
+        "idb": "8.0.0",
+        "lodash-es": "^4.17.20",
+        "vue": "2.7.14",
+        "html-to-image": "1.11.11"
+    },
+    "devDependencies": {
+        "@rspack/cli": "0.4.4",
+        "@types/lodash": "^4.14.168",
+        "css-loader": "^6.7.4",
+        "fs-extra": "^10.0.0",
+        "sass": "^1.32.8",
+        "sass-loader": "10.1.1",
+        "style-loader": "2.0.0",
+        "typescript": "4.9",
+        "vue-loader": "^15.10.1",
+        "vue-style-loader": "^4.1.3",
+        "vue-template-compiler": "2.6.14"
+    }
+}
