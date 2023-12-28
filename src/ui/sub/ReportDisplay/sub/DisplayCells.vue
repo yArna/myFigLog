@@ -26,7 +26,7 @@ export default {
     methods: {
         getLv(vcount) {
             vcount = Number.parseInt(vcount)
-            const vcrange = [1, 3, 9, 18, 36]
+            const vcrange = [1, 3, 9, 18, 30]
 
             if (vcount >= vcrange[4]) {
                 return 5
@@ -146,7 +146,7 @@ export default {
             background: #fe58ed;
         }
         &.lv-5 {
-            background: #fe58ed;
+            background: #ff3cc2;
         }
 
         &.isHoliday {
