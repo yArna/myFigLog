@@ -89,7 +89,9 @@
             <div class="image-export" v-if="report">
                 <div class="title">导出图片</div>
                 <div class="buttons">
-                    <button @click="doDownloadPng">下载报告图片</button>
+                    <button @click="doDownloadPng" :class="{ isExporting }">
+                        {{ isExporting ? "导出图片中..." : "下载报告图片" }}
+                    </button>
                 </div>
             </div>
 
@@ -125,6 +127,7 @@ export default {
             scan_progress_text: "",
             activeYearNumber: 2023,
             activeUserIndex: 0,
+            isExporting: false,
 
             // option
             isOffsetWeek: false,
@@ -152,10 +155,14 @@ export default {
         },
 
         async doDownloadPng() {
+            this.isExporting = true
             let el = this.$el.querySelector(".ReportDisplay")
             console.log("doDownloadPng start...", { el })
-            let pngBlob = await exportPng(el, "我的_Figma_记录.png", { sclae: 2 })
+
+            let year = this.activeYearNumber
+            let pngBlob = await exportPng(el, `我的_Figma_记录_${year}_.png`, { sclae: 2 })
             console.log("doDownloadPng done", pngBlob)
+            this.isExporting = false
         },
 
         async doScanFigmaData(options) {
@@ -186,7 +193,8 @@ export default {
         doDownloadFigmaData() {
             let report = this.report
             if (report) {
-                downloadFile(new Blob([JSON.stringify(report)]), `我的_Figma_历史数据.json`)
+                let name = this.report.userInfo?.users?.[this.activeUserIndex]?.name
+                downloadFile(new Blob([JSON.stringify(report)]), `我的_Figma_历史数据_${name}.json`)
             }
         },
         onDragover(e) {
@@ -446,6 +454,11 @@ export default {
         &::-webkit-scrollbar-thumb {
             background-color: rgb(97 100 119);
         }
+    }
+
+    button.isExporting {
+        pointer-events: none;
+        opacity: 0.5;
     }
 }
 </style>

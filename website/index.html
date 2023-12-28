@@ -26,6 +26,7 @@
                 height: 100%;
                 object-fit: cover;
                 z-index: -1;
+                animation: fadeIn ease 5s;
             }
 
             a {
@@ -48,7 +49,7 @@
                 top: 0;
                 left: 0;
                 right: 0;
-
+                animation: fadeIn ease-in-out 0.5s;
                 width: 1200px;
                 height: 1200px;
             }
@@ -62,10 +63,11 @@
 
             a.bookmark {
                 position: absolute;
-                left: 716px;
+                left: 683px;
                 top: 659px;
                 width: 298px;
                 background: transparent;
+                cursor: grab;
                 height: 73px;
                 font-size: 20px;
                 text-align: center;
@@ -163,6 +165,14 @@
                 .root {
                     display: flex;
                     place-content: center;
+                }
+            }
+            @keyframes fadeIn {
+                0% {
+                    opacity: 0;
+                }
+                100% {
+                    opacity: 1;
                 }
             }
         </style>
