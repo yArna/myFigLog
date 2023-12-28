@@ -9,10 +9,9 @@
             v-for="cell in cells"
             :key="cell.date"
             :data-date="cell.date"
-            :class="[`lv-${getLv(cell.versionCount)}`]"
+            :class="[`lv-${getLv(cell.versionCount)}`, { isHoliday: getHolidayInfo(cell.date)?.isHoliday }]"
             :data-vcount="cell.versionCount"
             v-tooltip="{ content: getCellTooltip(cell), html: true }"
-        
         ></div>
         <slot></slot>
     </div>
@@ -20,15 +19,18 @@
 
 <script>
 import dayjs from "dayjs"
+import { getHolidayCn } from "is-holiday-cn"
 export default {
-    props: { cells: {}, isOffsetWeek: { default: true } },
+    props: { cells: {}, isOffsetWeek: { default: true }, showHoliday: { default: false } },
     inject: ["ReportDisplay"],
     methods: {
         getLv(vcount) {
             vcount = Number.parseInt(vcount)
-            const vcrange = [1, 3, 9, 18]
+            const vcrange = [1, 3, 9, 18, 36]
 
-            if (vcount >= vcrange[3]) {
+            if (vcount >= vcrange[4]) {
+                return 5
+            } else if (vcount >= vcrange[3]) {
                 return 4
             } else if (vcount >= vcrange[2]) {
                 return 3
@@ -41,10 +43,15 @@ export default {
             }
         },
 
+        getHolidayInfo(date) {
+            if (!this.showHoliday) return
+            let d = new Date(date)
+            return getHolidayCn(d)
+        },
+
         readableDate(date) {
             if (date) {
                 // 星期
-
                 let week = dayjs(date).day()
                 let weekText = ["日", "一", "二", "三", "四", "五", "六"]
                 let weekTiile = `星期${weekText[week]}`
@@ -69,8 +76,13 @@ export default {
                 }
             }
 
+            let holidayHtml = ""
+            if (this.showHoliday) {
+                holidayHtml = `<div class="cell-tooltip-holiday">${this.getHolidayInfo(cell.date).dayName}</div>`
+            }
+
             return `<div class="cell-tooltip">
-             <div class="cell-tooltip-date">${date}</div>
+             <div class="cell-tooltip-date">${date} ${holidayHtml}</div>
              <div class="cell-tooltip-desk">${cell.versionCount} 个版本（涉及 ${fileCount} 个文件）</div>
              <div class="cell-tooltip-files">${filelist.join("")}</div>
             </div>
@@ -129,6 +141,15 @@ export default {
         &.lv-4 {
             background: #fe58ed;
         }
+        &.lv-5 {
+            background: #fe58ed;
+        }
+
+        &.isHoliday {
+            box-shadow: 0 1px 0 1px #187a4be6, 0 1px 0 1px #153d292e inset;
+            border: 1px solid #1ed593;
+            box-sizing: border-box;
+        }
     }
 }
 
@@ -138,6 +159,21 @@ export default {
         flex-direction: column;
         color: #d3c0ffc7;
         margin-top: 8px;
+        font-size: 12px;
+    }
+
+    .cell-tooltip-date {
+        display: flex;
+        place-content: flex-start;
+        place-items: center;
+    }
+
+    .cell-tooltip-holiday {
+        margin-left: 12px;
+        color: #2ae6a3;
+        border: 1px solid #139969;
+        border-radius: 3px;
+        padding: 0 6px;
         font-size: 12px;
     }
 }

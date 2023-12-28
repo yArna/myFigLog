@@ -8,10 +8,18 @@
 
             <div class="user-info" v-if="activeUser">
                 <div class="icon">
-                    <img :src="`https://figma-cors-img-a8xq5k6328gr.deno.dev/${activeUser.img_url}`" />
+                    <img :src="`https://figmas3.moonvy.cool/${activeUser.img_url}`" />
                 </div>
                 <div class="name">{{ activeUser.name }}</div>
             </div>
+
+            <div class="legend">
+                <div class="show-holiday" v-if="showHoliday">
+                    <div class="cell"></div>
+                    <div class="name">节假日</div>
+                </div>
+            </div>
+
             <div class="case-one-year">
                 <div class="main-graph-box">
                     <DisplayCells
@@ -20,6 +28,7 @@
                         v-for="(mouth, i) in activeYear.mouths"
                         :key="i"
                         :is-offset-week="isOffsetWeek"
+                        :show-holiday="showHoliday"
                     >
                         <div class="mounth-title">{{ `${i + 1} 月` }}</div>
                     </DisplayCells>
@@ -56,7 +65,7 @@ import { checkCSSBackgroundClip } from "./lib/fallbackCss"
 
 export default {
     components: { DisplayCells },
-    props: ["report", "activeYearNumber", "activeUserIndex", "isOffsetWeek"],
+    props: ["report", "activeYearNumber", "activeUserIndex", "isOffsetWeek", "showHoliday"],
     watch: {
         report: {
             handler() {
@@ -178,6 +187,29 @@ export default {
                 font-size: 13px;
                 color: #ffffff61;
                 bottom: 100%;
+            }
+        }
+    }
+
+    .legend {
+        position: absolute;
+        top: 173px;
+        left: 276px;
+        .show-holiday {
+            display: flex;
+            place-items: center;
+            font-size: 12px;
+            color: #ffffffde;
+            .cell {
+                box-shadow: 0 1px 0 1px rgba(24, 122, 75, 0.9019607843),
+                    0 1px 0 1px rgba(21, 61, 41, 0.1803921569) inset;
+                border: 1px solid #1ed593;
+                box-sizing: border-box;
+                border-radius: 3px;
+                width: 16px;
+                height: 16px;
+                display: flex;
+                margin-right: 6px;
             }
         }
     }

@@ -5,6 +5,7 @@
                 :report="report"
                 :active-year-number="activeYearNumber"
                 :active-user-index="activeUserIndex"
+                :show-holiday="showHoliday"
                 :is-offset-week="isOffsetWeek"
             />
         </div>
@@ -80,8 +81,12 @@
                         </select>
                     </div>
 
-                    <div class="week-set">
+                    <div class="week-set" v-tooltip="'像真实日历一样排列，这样能更方便看到周几'">
                         <label><input type="checkbox" v-model="isOffsetWeek" /> 日历按星期对齐</label>
+                    </div>
+
+                    <div class="showHoliday-set" v-tooltip="'看看在节假日有没有加班，计算了调休'">
+                        <label><input type="checkbox" v-model="showHoliday" /> 突出节假日</label>
                     </div>
                 </div>
             </div>
@@ -100,7 +105,7 @@
                     ><img src="../../website/assets/Moonvy-logo.svg"
                 /></a>
 
-                <div class="ver">v1.2.4</div>
+                <div class="ver">v1.2.5</div>
                 <a href="https://github.com/yArna/myFigLog" class="github" target="_blank"
                     ><img src="../../website/assets/github.svg"
                 /></a>
@@ -131,6 +136,7 @@ export default {
 
             // option
             isOffsetWeek: false,
+            showHoliday: false,
         }
     },
     mounted() {
