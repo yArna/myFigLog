@@ -100,7 +100,7 @@
                     ><img src="../../website/assets/Moonvy-logo.svg"
                 /></a>
 
-                <div class="ver">v1.2.2</div>
+                <div class="ver">v1.2.4</div>
                 <a href="https://github.com/yArna/myFigLog" class="github" target="_blank"
                     ><img src="../../website/assets/github.svg"
                 /></a>
@@ -232,6 +232,7 @@ export default {
 
 <style lang="scss">
 .mFLGApp {
+    font-family: --apple-system, sans-serif;
     position: fixed;
     display: flex;
     z-index: 100;

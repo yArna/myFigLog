@@ -12,6 +12,7 @@
             :class="[`lv-${getLv(cell.versionCount)}`]"
             :data-vcount="cell.versionCount"
             v-tooltip="{ content: getCellTooltip(cell), html: true }"
+        
         ></div>
         <slot></slot>
     </div>

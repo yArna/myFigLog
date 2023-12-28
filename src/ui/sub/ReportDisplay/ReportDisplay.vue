@@ -1,5 +1,5 @@
 <template>
-    <div class="ReportDisplay">
+    <div class="ReportDisplay" :class="{ noCSSBackgroundClip }">
         <template v-if="report">
             <div class="report-title">
                 <div class="title shadow">{{ activeYearNumber }} 年度报告</div>
@@ -52,6 +52,8 @@
 <script>
 import DisplayCells from "./sub/DisplayCells.vue"
 import { analysisReportYear } from "../../../report/analysisReport"
+import { checkCSSBackgroundClip } from "./lib/fallbackCss"
+
 export default {
     components: { DisplayCells },
     props: ["report", "activeYearNumber", "activeUserIndex", "isOffsetWeek"],
@@ -79,6 +81,7 @@ export default {
             countYear_version: 0,
             maxConsecutiveWorkDay: 0,
             maxEditFile: null,
+            noCSSBackgroundClip: !checkCSSBackgroundClip(),
         }
     },
     methods: {
@@ -277,6 +280,12 @@ export default {
             top: 453px;
             opacity: 0.5;
         }
+    }
+
+    &.noCSSBackgroundClip .counts .count {
+        -webkit-text-fill-color: initial;
+        background: transparent;
+        color: #ffffffdb;
     }
 }
 </style>
