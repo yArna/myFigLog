@@ -105,7 +105,7 @@
                     ><img src="../../website/assets/Moonvy-logo.svg"
                 /></a>
 
-                <div class="ver">v1.2.6</div>
+                <div class="ver">v1.2.7</div>
                 <a href="https://github.com/yArna/myFigLog" class="github" target="_blank"
                     ><img src="../../website/assets/github.svg"
                 /></a>
