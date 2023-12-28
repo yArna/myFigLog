@@ -78,7 +78,7 @@ export default {
 
             let holidayHtml = ""
             if (this.showHoliday) {
-                let HolidayInfo = this.getHolidayInfo(cell.date) 
+                let HolidayInfo = this.getHolidayInfo(cell.date)
                 if (HolidayInfo.dayName) {
                     holidayHtml = `<div class="cell-tooltip-holiday">${HolidayInfo.dayName}</div>`
                 }
@@ -100,6 +100,7 @@ export default {
                 let day1Date = this.cells[0].date
                 let day1Week = dayjs(day1Date).day()
                 let offset = day1Week - 1
+                if (offset < 0) offset = 6
                 return offset
             }
             return 0
