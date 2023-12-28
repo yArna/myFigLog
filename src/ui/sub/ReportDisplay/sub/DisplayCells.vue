@@ -78,7 +78,10 @@ export default {
 
             let holidayHtml = ""
             if (this.showHoliday) {
-                holidayHtml = `<div class="cell-tooltip-holiday">${this.getHolidayInfo(cell.date).dayName}</div>`
+                let HolidayInfo = this.getHolidayInfo(cell.date) 
+                if (HolidayInfo.dayName) {
+                    holidayHtml = `<div class="cell-tooltip-holiday">${HolidayInfo.dayName}</div>`
+                }
             }
 
             return `<div class="cell-tooltip">
