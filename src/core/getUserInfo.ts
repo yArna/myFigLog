@@ -6,6 +6,14 @@ export async function getUserInfo() {
     let drafts_folder_id = re_userState.data.meta.drafts_folder_id
 
     let teams_raw = Array.from(re_session.data?.meta?.teams)
+
+    if (re_userState.data?.meta?.teams) {
+        for (const team of re_userState.data?.meta?.teams) {
+            if (teams_raw.find((x: any) => x.id === team.id)) continue
+            teams_raw.push(team)
+        }
+    }
+
     if (Array.isArray(re_session.data?.meta?.orgs)) {
         for (const org of re_session.data?.meta?.orgs) {
             let teams = await getOrgTeams(org.id)
