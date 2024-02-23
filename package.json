@@ -9,8 +9,8 @@
         "dev:website": "rspack dev --mode=development -c ./rspack.website.config.js",
         "build": "rspack build --mode=production",
         "build-up": "npm run build && npm run up:app",
-        "up:website": "node ./publish/publishWebsite.mjs",
-        "up:app": "node ./publish/publishApp.mjs"
+        "up:website": "tsx ./publish/publishWebsite.mjs",
+        "up:app": "tsx ./publish/publishApp.mjs"
     },
     "keywords": [],
     "author": "",
