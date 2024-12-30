@@ -130,7 +130,7 @@ export default {
             isScaning: false,
             scan_progress: 0,
             scan_progress_text: "",
-            activeYearNumber: 2023,
+            activeYearNumber: 2024,
             activeUserIndex: 0,
             isExporting: false,
 

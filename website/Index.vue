@@ -18,7 +18,7 @@
 
             <div class="desc">
                 <h1>分析我的 Figma 年度报告</h1>
-                <p>2 步生成你的 Figma 2023 年度报告</p>
+                <p>2 步生成你的 Figma 2024 年度报告</p>
                 <p>生成你的 Figma 使用记录，生成可供分享的共享图，就像 Github 共享图一样</p>
             </div>
 
